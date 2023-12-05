@@ -1,0 +1,48 @@
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/chessboard.js/1.0.0/chessboard-1.0.0.min.css" rel="stylesheet"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard.js/1.0.0/chessboard-1.0.0.min.js"></script>
+</head>
+
+<body>
+    <div id="board"></div>
+</body>
+
+<script>
+var board = null
+var game = new Chess()
+
+function onDragStart (source, piece, position, orientation) {
+  if (game.in_checkmate() === true || game.in_draw() === true ||
+      piece.search(/^b/) !== -1) {
+    return false
+  }
+}
+
+function onDrop (source, target) {
+  var move = game.move({
+    from: source,
+    to: target,
+    promotion: 'q'
+  })
+
+  if (move === null) {
+    return 'snapback'
+  }
+}
+
+function onSnapEnd () {
+  board.position(game.fen())
+}
+
+var cfg = {
+  draggable: true,
+  position: 'start',
+  onDragStart: onDragStart,
+  onDrop: onDrop,
+  onSnapEnd: onSnapEnd
+}
+board = Chessboard('board', cfg)
+</script>
+</body>
