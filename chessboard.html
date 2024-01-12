@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="node_modules/@chrisoakman/chessboardjs/dist/chessboard-1.0.0.css" />
   <script src="node_modules/jquery/dist/jquery.min.js"></script>
   <script src="node_modules/@chrisoakman/chessboardjs/dist/chessboard-1.0.0.min.js"></script>
-  <script src="node_modules/chess.js/chess.js"></script>
+  <script src="node_modules/chess.js/dist/cjs/chess.js"></script>
 </head>
 <body>
   <div id="myBoard" style="width: 400px"></div>
@@ -17,9 +17,14 @@
   <div id="pgn"></div>
   <script>
     // Your JavaScript code goes here
+
 </script>
 <script src="https://cdn.jsdelivr.net/npm/chess.js@1.0.0/chess.js"></script>
 <script>
+    // Add missing import statements
+    import Chessboard from '@chrisoakman/chessboardjs';
+    import Chess from 'chess.js';
+
     var board = null
     var game = new Chess()
     var $status = $('#status')
